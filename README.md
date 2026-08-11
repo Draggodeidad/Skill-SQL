@@ -1,8 +1,39 @@
+[![skills.sh](https://skills.sh/b/Draggodeidad/Skill-SQL)](https://skills.sh/Draggodeidad/Skill-SQL)
+
 # SQL Reviewer Skill
 
-## Descripción
+## Instalación
 
-Skill de revisión técnica de SQL. Analiza sentencias y scripts SQL aplicando reglas deterministas de seguridad, rendimiento y convenciones. Cada hallazgo se clasifica por severidad usando un procedimiento reproducible — no es un prompt genérico.
+```bash
+npx skills add Draggodeidad/Skill-SQL
+```
+
+## Qué hace esta skill
+
+Revisa código SQL de forma técnica y determinista. Analiza sentencias, scripts y migraciones aplicando 24 reglas organizadas en tres categorías:
+
+- **Seguridad** (8 reglas) — Detecta inyección SQL, DELETE/UPDATE sin WHERE, columnas sensibles expuestas, privilegios excesivos
+- **Rendimiento** (10 reglas) — Identifica consultas sin LIMIT, índices faltantes, patrones N+1, coerción de tipos implícita
+- **Convenciones** (6 reglas) — Valida nombres, comparaciones NULL, tipos de dato, estilo
+
+Cada hallazgo se clasifica por severidad (CRITICAL → INFO) y se evalúa su _blast radius_ — el daño real que puede causar si se ejecuta.
+
+## En qué ayuda
+
+- **Previene errores costosos** — Un DELETE sin WHERE en producción puede borrar toda una tabla. Esta skill lo detecta antes de ejecutar.
+- **Detecta problemas ocultos** — Un `WHERE 1=1` parece tener filtro pero no lo tiene. El blast radius identifica estas trampas.
+- **Mejora el rendimiento** — Encuentra consultas que harán full table scan, JOINs con tipos incompatibles, y patrones N+1.
+- **Estandariza código SQL** — Asegura que el equipo siga las mismas convenciones de nombres y estilos.
+
+## Cuándo usarla
+
+| Caso de uso | Ejemplo |
+|-------------|---------|
+| Revisar PR con cambios en base de datos | Migración nueva, stored procedure, cambio de schema |
+| Auditar queries lentas | SELECT que tarda más de lo esperado |
+| Validar migraciones antes de producción | Scripts DDL/DML que van a ejecutarse en prod |
+| Revisar código con SQL embebido | Queries en string concatenation o template literals |
+| Enseñar buenas prácticas de SQL | Feedback automatizado para junior developers |
 
 ## Inicio rápido
 
